@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorDivider">#E4E4E4</color>
+    <color name="colorDay">#B8B8B8</color>
+    <color name="colorCurrentDay">#4E4E4E</color>
+    <color name="colorDayName">#8A8A8A</color-->
+    <color name="colorNumberPickerBackground">#FFFFFF</color>
+    <color name="colorPrimary">#ffd15c</color>
+    <color name="colorPrimaryDark">#f8b64c</color>
+    <color name="colorAccent">#ff7058</color>
+    <color name="colorBlackDark">#40596b</color>
+    <color name="colorBlackLight">#cdd6e0</color>
+</resources>

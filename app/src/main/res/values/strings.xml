@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Training Journal</string>
+    <string name="add_repeats">+</string>
+    <string name="close">Close</string>
+    <string name="enter">Enter</string>
+    <string name="monday">M</string>
+    <string name="tuesday">T</string>
+    <string name="wednesday">W</string>
+    <string name="thursday">T</string>
+    <string name="friday">F</string>
+    <string name="saturday">S</string>
+    <string name="sunday">S</string>
+    <string name="set">Set</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_exercise_title">New workout</string>
+    <string name="set_level_title">Set level</string>
+    <string name="set_goal_title">Set goal</string>
+    <string name="new_repetition_title">New repetition</string>
+    <string name="set_repetition_title">Set repetition</string>
+    <string name="write_button">Write</string>
+</resources>
