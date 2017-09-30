@@ -124,7 +124,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Entry entry = new Entry();
-                entry.setWorkout(workoutView.getSelectedExercise());
+                String workout = workoutView.getSelectedExercise();
+                if (workout.equals("+")) {
+                    return;
+                }
+                entry.setWorkout(workout);
                 entry.setDate(journal.getCurrentDate());
                 entry.setLevel(levelView.getLevel());
                 entry.setGoal(goalView.getGoal());
