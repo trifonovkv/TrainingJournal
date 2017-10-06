@@ -12,4 +12,5 @@
         android:textAlignment="textStart"
         android:textColor="@color/colorBlackDark"
         android:textSize="18sp" />
+
 </LinearLayout>

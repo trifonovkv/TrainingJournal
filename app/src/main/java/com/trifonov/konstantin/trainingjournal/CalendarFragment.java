@@ -2,6 +2,7 @@ package com.trifonov.konstantin.trainingjournal;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -63,7 +64,8 @@ public class CalendarFragment extends Fragment {
         this.populate(ll2, weekTwo.keySet().toArray(new Integer[0]));
         this.days.putAll(weekOne);
         this.days.putAll(weekTwo);
-        this.markDay(this.today, R.color.colorBlackDark);
+        this.today.setTextColor(Color.parseColor("#ffd15c"));
+        this.saveStyle(this.today);
         this.setSelected(this.today);
         return root;
     }
@@ -79,17 +81,10 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    private void markDay(TextView day, int color) {
-        this.saveStyle(day);
-        day.setTextColor(color);
-    }
-
     void setSelected(TextView day) {
         this.restore(this.lastSelected);
         this.saveStyle(day);
         day.setBackgroundResource(R.drawable.circle);
-        // day.setTextColor(Color.WHITE);
-        // day.setTextColor(getResources().getColor(R.color.colorBlackLight));
     }
 
     void restore(TextView day) {
