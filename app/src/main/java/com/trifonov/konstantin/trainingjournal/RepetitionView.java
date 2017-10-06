@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class RepetitionView implements Observer {
+class RepetitionView implements Observer {
     private LinearLayout repeatsView;
     private View.OnClickListener repeatViewListener;
 
-    public RepetitionView(LinearLayout repeatsView) {
+    RepetitionView(LinearLayout repeatsView) {
         this.repeatsView = repeatsView;
     }
 
@@ -30,19 +30,19 @@ public class RepetitionView implements Observer {
         this.populate(repeats);
     }
 
-    public void setAddButtonListener(View.OnClickListener listener) {
+    void setAddButtonListener(View.OnClickListener listener) {
         ImageButton repeatAddButton = this.repeatsView.findViewById(R.id.repeatAddButton);
         repeatAddButton.setOnClickListener(listener);
     }
 
-    public void setRepeatViewListener(View.OnClickListener repeatViewListener) {
+    void setRepeatViewListener(View.OnClickListener repeatViewListener) {
         this.repeatViewListener = repeatViewListener;
     }
 
 
     public void add(int repeat) {
         TextView repeatView = this.create(repeat);
-        repeatView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+        repeatView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
         LinearLayout.LayoutParams params =
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -56,7 +56,7 @@ public class RepetitionView implements Observer {
         repeatsLayout.addView(repeatView);
     }
 
-    public String getRepetition() {
+    String getRepetition() {
         StringBuilder string = new StringBuilder();
         LinearLayout repeatsLayout = this.repeatsView.findViewById(R.id.repeatsLayout);
         for (int i = 0; i < repeatsLayout.getChildCount(); i++) {

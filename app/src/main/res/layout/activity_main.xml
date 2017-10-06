@@ -85,7 +85,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/colorBlackDark"
-                android:textSize="18sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 

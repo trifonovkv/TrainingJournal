@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-public class WorkoutDialogFragment extends DialogFragment {
-    private WorkoutView workoutView;
+public class ExerciseDialogFragment extends DialogFragment {
+    private ExerciseView exerciseView;
     private View root;
 
     @NonNull
@@ -31,18 +31,18 @@ public class WorkoutDialogFragment extends DialogFragment {
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
+                        dialog.cancel();
                     }
                 });
         return builder.create();
     }
 
-    public void set(WorkoutView workoutView) {
-        this.workoutView = workoutView;
+    public void set(ExerciseView exerciseView) {
+        this.exerciseView = exerciseView;
     }
 
     private void addExercise() {
         EditText exercise = this.root.findViewById(R.id.exerciseEditText);
-        this.workoutView.add(exercise.getText().toString());
+        this.exerciseView.add(exercise.getText().toString());
     }
 }

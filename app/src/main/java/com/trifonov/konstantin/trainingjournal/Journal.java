@@ -30,6 +30,7 @@ class Journal {
     Calendar getCurrentDate() {
         return this.currentDate;
     }
+
     Entry getEntry() {
         Iterator<Entry> iterator = this.entries.descendingIterator();
         while (iterator.hasNext()) {
@@ -39,6 +40,17 @@ class Journal {
             }
         }
         return new Entry();
+    }
+
+    void setDateByExercise(String exercise) {
+        Entry entry;
+        for (Entry entry1 : this.entries) {
+            entry = entry1;
+            if (entry.getExercise().equals(exercise)) {
+                this.currentDate = entry.getDate();
+            }
+        }
+        this.notifyObservers();
     }
 
     void add(Entry entry) {

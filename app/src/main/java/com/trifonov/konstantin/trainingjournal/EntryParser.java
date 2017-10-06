@@ -10,7 +10,7 @@ public class EntryParser {
     public Entry getEntry(String[] s) {
         Entry entry = new Entry();
         entry.setDate(this.calendarParser.getCalendar(s[0]));
-        entry.setWorkout(s[1]);
+        entry.setExercise(s[1]);
         entry.setLevel(s[2]);
         entry.setGoal(s[3]);
         entry.setSet(s[4]);
@@ -21,7 +21,7 @@ public class EntryParser {
     public String[] getStrings(Entry e) {
         String[] strings = new String[6];
         strings[0] = this.calendarParser.getString(e.getDate());
-        strings[1] = e.getWorkout();
+        strings[1] = e.getExercise();
         strings[2] = e.getLevel();
         strings[3] = e.getGoal();
         strings[4] = e.getSet();

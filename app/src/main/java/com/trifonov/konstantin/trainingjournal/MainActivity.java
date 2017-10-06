@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -18,18 +19,26 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements CalendarFragment.OnCalendarSelectedListener {
     private Journal journal = Journal.getInstance();
-    private WorkoutDialogFragment exerciseDialog = new WorkoutDialogFragment();
+    private ExerciseDialogFragment exerciseDialog = new ExerciseDialogFragment();
     private AddRepetitionDialogFragment addRepetitionDialog = new AddRepetitionDialogFragment();
     private ChangeRepetitionDialogFragment changeRepetitionDialog = new ChangeRepetitionDialogFragment();
     private LevelDialogFragment levelDialog = new LevelDialogFragment();
     private GoalDialogFragment goalDialogFragment = new GoalDialogFragment();
+    private ExerciseView exerciseView;
+    private LevelView levelView;
+    private GoalView goalView;
+    private RepetitionView repetitionView;
+    private NoteView noteView;
 
     AdapterView.OnItemSelectedListener addExerciseItemListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            if (adapterView.getSelectedItem() == "+") {
+            String exercise = adapterView.getSelectedItem().toString();
+            if (exercise.equals("+")) {
                 exerciseDialog.show(getSupportFragmentManager(), "ExerciseDialog");
+                return;
             }
+            journal.setDateByExercise(exercise);
         }
 
         @Override
@@ -85,7 +94,6 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
-    // TODO remove all final variables
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,34 +109,34 @@ public class MainActivity extends AppCompatActivity
         }
         this.journal.write(entries);
         // TODO separate instructions
-        final WorkoutView workoutView = new WorkoutView((Spinner) findViewById(R.id.exerciseSpinner));
-        final LevelView levelView = new LevelView((TextView) findViewById(R.id.levelView));
-        final GoalView goalView = new GoalView((TextView) findViewById(R.id.goalView));
-        final RepetitionView repetitionView = new RepetitionView((LinearLayout) findViewById(R.id.repetitionLayout));
-        final NoteView noteView = new NoteView((EditText) findViewById(R.id.noteView));
-        workoutView.setAddItemListener(this.addExerciseItemListener);
-        levelView.setEditTextListener(this.levelViewListener);
-        goalView.setEditTextListener(this.goalViewListener);
-        repetitionView.setAddButtonListener(this.addRepeatButtonListener);
-        repetitionView.setRepeatViewListener(this.repeatViewListener);
-        this.exerciseDialog.set(workoutView);
-        this.goalDialogFragment.setWidget(goalView);
-        this.addRepetitionDialog.set(repetitionView);
-        this.journal.register(workoutView);
-        this.journal.register(levelView);
-        this.journal.register(goalView);
-        this.journal.register(repetitionView);
-        this.journal.register(noteView);
+        this.exerciseView = new ExerciseView((Spinner) findViewById(R.id.exerciseSpinner));
+        this.levelView = new LevelView((TextView) findViewById(R.id.levelView));
+        this.goalView = new GoalView((TextView) findViewById(R.id.goalView));
+        this.repetitionView = new RepetitionView((LinearLayout) findViewById(R.id.repetitionLayout));
+        this.noteView = new NoteView((EditText) findViewById(R.id.noteView));
+        this.exerciseView.setAddItemListener(this.addExerciseItemListener);
+        this.levelView.setEditTextListener(this.levelViewListener);
+        this.goalView.setEditTextListener(this.goalViewListener);
+        this.repetitionView.setAddButtonListener(this.addRepeatButtonListener);
+        this.repetitionView.setRepeatViewListener(this.repeatViewListener);
+        this.exerciseDialog.set(this.exerciseView);
+        this.goalDialogFragment.setWidget(this.goalView);
+        this.addRepetitionDialog.set(this.repetitionView);
+        this.journal.register(this.exerciseView);
+        this.journal.register(this.levelView);
+        this.journal.register(this.goalView);
+        this.journal.register(this.repetitionView);
+        this.journal.register(this.noteView);
         Button writeButton = (Button) findViewById(R.id.writeButton);
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Entry entry = new Entry();
-                String workout = workoutView.getSelectedExercise();
+                String workout = exerciseView.getSelectedExercise();
                 if (workout.equals("+")) {
                     return;
                 }
-                entry.setWorkout(workout);
+                entry.setExercise(workout);
                 entry.setDate(journal.getCurrentDate());
                 entry.setLevel(levelView.getLevel());
                 entry.setGoal(goalView.getGoal());
@@ -141,6 +149,9 @@ public class MainActivity extends AppCompatActivity
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.recorded), Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
     }
@@ -154,7 +165,6 @@ public class MainActivity extends AppCompatActivity
         this.journal.notifyObservers();
     }
 
-    // get integer value from text view
     private int getIntegerFromTextView(TextView textVeiw, int min, int max) {
         int integer;
         String string = textVeiw.getText().toString();

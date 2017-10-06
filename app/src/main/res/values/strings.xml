@@ -12,10 +12,11 @@
     <string name="sunday">S</string>
     <string name="set">Set</string>
     <string name="cancel">Cancel</string>
-    <string name="new_exercise_title">New workout</string>
+    <string name="new_exercise_title">New exercise</string>
     <string name="set_level_title">Set level</string>
     <string name="set_goal_title">Set goal</string>
     <string name="new_repetition_title">New repetition</string>
     <string name="set_repetition_title">Set repetition</string>
     <string name="write_button">Write</string>
+    <string name="recorded">Recorded</string>
 </resources>

@@ -10,10 +10,9 @@ import android.view.View;
 import android.widget.NumberPicker;
 
 public class AddRepetitionDialogFragment extends DialogFragment {
-    private View root;
     private RepetitionView repetitionView;
     private NumberPicker repeats;
-    private int value;
+    private static final int defaultValue = 0;
     private int maxValue;
     private int minValue;
 
@@ -21,11 +20,11 @@ public class AddRepetitionDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        this.root = inflater.inflate(R.layout.dialog_repetition, null);
+        View root = inflater.inflate(R.layout.dialog_repetition, null);
         this.repeats = root.findViewById(R.id.repeatPicker);
         this.repeats.setMaxValue(this.maxValue);
         this.repeats.setMinValue(this.minValue);
-        this.repeats.setValue(this.value);
+        this.repeats.setValue(defaultValue);
         builder.setView(root)
                 .setTitle(R.string.new_repetition_title)
                 .setPositiveButton(R.string.enter, new DialogInterface.OnClickListener() {

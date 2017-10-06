@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 class Entry {
     private Calendar date;
-    private String workout;
+    private String exercise;
     private String level;
     private String goal;
     private String set;
@@ -14,8 +14,8 @@ class Entry {
         return date;
     }
 
-    String getWorkout() {
-        return workout;
+    String getExercise() {
+        return exercise;
     }
 
     String getLevel() {
@@ -38,8 +38,8 @@ class Entry {
         this.date = date;
     }
 
-    void setWorkout(String workout) {
-        this.workout = workout;
+    void setExercise(String exercise) {
+        this.exercise = exercise;
     }
 
     void setLevel(String level) {

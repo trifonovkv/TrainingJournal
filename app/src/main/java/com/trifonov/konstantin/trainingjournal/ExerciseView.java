@@ -9,12 +9,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WorkoutView implements Observer {
+public class ExerciseView implements Observer {
     private Spinner spinner;
     private Journal journal = Journal.getInstance();
     private ArrayAdapter<String> adapter;
 
-    public WorkoutView(Spinner spinner) {
+    public ExerciseView(Spinner spinner) {
         this.spinner = spinner;
         List<Entry> entries = this.journal.getAll();
         List<String> exercises = new ArrayList<>(this.getExercises(entries));
@@ -24,7 +24,7 @@ public class WorkoutView implements Observer {
     @Override
     public void update() {
         Entry entry = this.journal.getEntry();
-        this.spinner.setSelection(this.adapter.getPosition(entry.getWorkout()));
+        this.spinner.setSelection(this.adapter.getPosition(entry.getExercise()));
     }
 
     public void setAddItemListener(AdapterView.OnItemSelectedListener listener) {
@@ -52,7 +52,7 @@ public class WorkoutView implements Observer {
     private Set<String> getExercises(List<Entry> entries) {
         Set<String> exercises = new HashSet<>();
         for (Entry e : entries) {
-            exercises.add(e.getWorkout());
+            exercises.add(e.getExercise());
         }
         return exercises;
     }
